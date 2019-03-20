@@ -152,7 +152,7 @@ int main()
  Wektor2D wektor1;
  Wektor2D wektor2;
  cin>>wektor1;
-//wektor1.Przypisz_wartosc(0,50);//X
+ //wektor1.Przypisz_wartosc(0,50);//X
  //wektor1.Przypisz_wartosc(1,70);//Y
  
 cout<<wektor1<<endl;
@@ -163,7 +163,11 @@ cin>>wektor2;
 cout<<endl;
 Wektor2D suma;
 suma=wektor1+wektor2;
-cout<<suma;
+Wektor2D iloczyn;
+iloczyn=wektor1*wektor2;
+Wektor2D iloczyn_liczby;
+iloczyn_liczby=iloczyn*10;
+cout<<"SUMA->>>>"<<suma<<endl<<"ILOCZYN->>>"<<iloczyn<<endl<<"TO CO WYZEJ RAZY 10"<<iloczyn_liczby<<endl;
 
 
 

@@ -30,9 +30,7 @@ class Prostokat {
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::ostream& operator << ( std::ostream       &Strm, 
-                            const Prostokat    &Pr
-                          );
+std::ostream& operator << ( std::ostream &Strm, const Prostokat    &Pr);
 
 
 #endif
