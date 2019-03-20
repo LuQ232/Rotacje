@@ -64,6 +64,7 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream&     StrmWy,
          << setw(16) << fixed << setprecision(10) << y3+Przesuniecie << endl;
   StrmWy << setw(16) << fixed << setprecision(10) << x4+Przesuniecie 
          << setw(16) << fixed << setprecision(10) << y4+Przesuniecie << endl;
+  
   StrmWy << setw(16) << fixed << setprecision(10) << x1+Przesuniecie 
          << setw(16) << fixed << setprecision(10) << y1+Przesuniecie << endl; 
                              // Jeszcze raz zapisujemy pierwszy punkt,
@@ -107,7 +108,8 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
 
 int main()
 {
-  Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
+  Wektor2D wektor;
+ /* Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
 
@@ -144,5 +146,8 @@ int main()
   if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",50)) return 1;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
-  cin.ignore(100000,'\n');
+  cin.ignore(100000,'\n'); */
+ wektor.Przypisz_wartosc(0,10);//X
+ wektor.Przypisz_wartosc(1,20);//Y
+ WyswietlWektor(wektor);
 }

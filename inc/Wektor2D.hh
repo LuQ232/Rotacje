@@ -1,6 +1,8 @@
 #ifndef WEKTOR2D_HH
 #define WEKTOR2D_HH
 
+#define ROZMIAR 2
+
 #include <iostream>
 
 
@@ -12,10 +14,23 @@ class Wektor2D {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
+
+		double tablica[ROZMIAR];
+
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */    
+  	double Zwroc_wartosc(int a)
+  	{
+  		return tablica[a];
+  	}
+
+  	void Przypisz_wartosc(int a, double b)
+  	{
+  		tablica[a]=b;
+  	}
+
 };
 
 
@@ -37,4 +52,7 @@ std::istream& operator >> (std::istream &Strm, Wektor2D &Wek);
  */
 std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek);
 
+
+
+void WyswietlWektor(Wektor2D wektorek);
 #endif

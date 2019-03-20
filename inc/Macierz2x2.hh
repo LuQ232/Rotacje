@@ -1,9 +1,9 @@
 #ifndef MACIERZ2X2_HH
 #define MACIERZ2X2_HH
-
+#define LICZBA 2
 
 #include <iostream>
-
+#include "Wektor2D.hh"
 
 /*
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
@@ -13,6 +13,7 @@ class Macierz2x2 {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
+	Wektor2D wierzcholki[LICZBA];
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych

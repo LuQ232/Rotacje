@@ -1,7 +1,9 @@
 #ifndef PROSTOKAT_HH
 #define PROSTOKAT_HH
 
+#define ILOSC  4
 #include <iostream>
+#include "Wektor2D.hh"
 
 
 /*
@@ -12,6 +14,8 @@ class Prostokat {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
+	Wektor2D wierzcholki[ILOSC];
+
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
