@@ -108,7 +108,7 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
 
 int main()
 {
-  Wektor2D wektor;
+  
  /* Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
@@ -147,7 +147,24 @@ int main()
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
   cin.ignore(100000,'\n'); */
- wektor.Przypisz_wartosc(0,10);//X
- wektor.Przypisz_wartosc(1,20);//Y
- WyswietlWektor(wektor);
+
+
+ Wektor2D wektor1;
+ Wektor2D wektor2;
+ cin>>wektor1;
+//wektor1.Przypisz_wartosc(0,50);//X
+ //wektor1.Przypisz_wartosc(1,70);//Y
+ 
+cout<<wektor1<<endl;
+cin>>wektor2;
+ //wektor2.Przypisz_wartosc(0,100);//X
+ //wektor2.Przypisz_wartosc(1,100);//Y
+ cout<<wektor2<<endl;
+cout<<endl;
+Wektor2D suma;
+suma=wektor1+wektor2;
+cout<<suma;
+
+
+
 }

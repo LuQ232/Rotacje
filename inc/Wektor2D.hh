@@ -50,9 +50,12 @@ std::istream& operator >> (std::istream &Strm, Wektor2D &Wek);
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek);
+std::ostream& operator << (std::ostream &Strm,  Wektor2D &Wek) ;
 
-
-
+ 
+Wektor2D  operator + (Wektor2D wektor1,Wektor2D wektor2);
+Wektor2D  operator - (Wektor2D wektor1,Wektor2D wektor2);
 void WyswietlWektor(Wektor2D wektorek);
+
+Wektor2D Dodaj_wektory(Wektor2D wektor1,Wektor2D wektor2);
 #endif
