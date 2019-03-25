@@ -13,13 +13,6 @@ using namespace std;
  */
 
 
-/*
-std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek)
-{
-Strm << setw(16) << fixed << setprecision(10) << Wek.Zwroc_wartosc(0);<< setw(16) << fixed << setprecision(10) << Wek.Zwroc_wartosc(1); << endl;
-return Strm;
-}
-*/
 
 
 Wektor2D  operator + (Wektor2D wektor1,Wektor2D wektor2)
@@ -81,6 +74,17 @@ Wektor2D  operator * (Wektor2D wektor1,double liczba)
 
   return Wynik;
 }
+
+/*
+//ILOCZYN  WEKTORA I MACIERZY -> ZWRACA WEKTOR 
+Wektor2D  operator * (Wektor2D wektor1,Macierz2x2 macierz)
+{
+	Wektor2D Wynik;
+
+  return Wynik;
+}
+*/
+
 //ILORAZ   WEKTORA I LICZBY  -> ZWRACA WEKTOR 
 Wektor2D  operator / (Wektor2D wektor1,double liczba)
 {

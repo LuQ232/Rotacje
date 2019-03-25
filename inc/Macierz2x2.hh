@@ -13,11 +13,21 @@ class Macierz2x2 {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-	Wektor2D wierzcholki[LICZBA];
+	Wektor2D wektory[LICZBA];
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */    
+  	void Przypisz_wektor_macierzy(unsigned int a, Wektor2D wektor)
+  	{
+  		wektory[a]=wektor;
+  	}
+
+   Wektor2D Zwroc_wektor_macierzy(unsigned int a)
+  	{
+  		return wektory[a];
+  	}   
+
 };
 
 
@@ -30,6 +40,7 @@ class Macierz2x2 {
  *
  * Przeciążenie to może być użyteczne w trakcie debugowania programu.
  */
-std::ostream& operator << (std::ostream &Strm, const Macierz2x2 &Mac);
-
+std::ostream& operator << (std::ostream &Strm,  Macierz2x2 &Mac);
+Macierz2x2 Stworz(Wektor2D wek1,Wektor2D wek2);
+//Wektor2D  operator * (Wektor2D wektor1,Macierz2x2 macierz);
 #endif

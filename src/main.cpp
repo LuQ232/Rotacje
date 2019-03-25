@@ -168,7 +168,28 @@ iloczyn=wektor1*wektor2;
 Wektor2D iloczyn_liczby;
 iloczyn_liczby=iloczyn*10;
 cout<<"SUMA->>>>"<<suma<<endl<<"ILOCZYN->>>"<<iloczyn<<endl<<"TO CO WYZEJ RAZY 10"<<iloczyn_liczby<<endl;
+cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`"<<endl;
+
+Macierz2x2 Maciora;
+Prostokat Prosty;
 
 
+	Prosty=Stworz(wektor1,wektor2,suma,iloczyn);
+	//WyswietlWspolrzedne(Prosty);
+	cout<<Prosty;
+	Prosty=Stworz(wektor1,wektor1,wektor1,wektor1);
+	cout<<endl<<endl<<Prosty<<endl;
+	Maciora=Stworz(wektor1,wektor2);
+	cout<<Maciora;
+	/*	
+	Wektor2D tmp;
+	for (int i=0; i<4;i++)
+	{
+	Prosty.Przypisz_wektor_prostokata(i,wektor1);
+	tmp=Prosty.Zwroc_wektor_prostokata(i);
+	cout<<tmp;
+	}
+	*/	
+	
 
 }

@@ -56,6 +56,7 @@ std::ostream& operator << (std::ostream &Strm,  Wektor2D &Wek) ;
 Wektor2D  operator + (Wektor2D wektor1,Wektor2D wektor2);
 Wektor2D  operator - (Wektor2D wektor1,Wektor2D wektor2);
 Wektor2D  operator * (Wektor2D wektor1,Wektor2D wektor2);
+//Wektor2D  operator * (Wektor2D wektor1,Macierz2x2 macierz);
 Wektor2D  operator * (Wektor2D wektor1,double liczba);
 Wektor2D  operator / (Wektor2D wektor1,double liczba);
 void WyswietlWektor(Wektor2D wektorek);
