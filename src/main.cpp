@@ -159,7 +159,7 @@ cout<<wektor1<<endl;
 cin>>wektor2;
  //wektor2.Przypisz_wartosc(0,100);//X
  //wektor2.Przypisz_wartosc(1,100);//Y
- cout<<wektor2<<endl;
+cout<<wektor2<<endl;
 cout<<endl;
 Wektor2D suma;
 suma=wektor1+wektor2;
@@ -177,10 +177,11 @@ Prostokat Prosty;
 	Prosty=Stworz(wektor1,wektor2,suma,iloczyn);
 	//WyswietlWspolrzedne(Prosty);
 	cout<<Prosty;
-	Prosty=Stworz(wektor1,wektor1,wektor1,wektor1);
+	Prosty=Stworz(wektor1,wektor1,wektor2,wektor2);
 	cout<<endl<<endl<<Prosty<<endl;
 	Maciora=Stworz(wektor1,wektor2);
 	cout<<Maciora;
+
 	/*	
 	Wektor2D tmp;
 	for (int i=0; i<4;i++)
@@ -190,6 +191,28 @@ Prostokat Prosty;
 	cout<<tmp;
 	}
 	*/	
+
+
+cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+
+
+Wektor2D iloczyn_macierzy;
+iloczyn_macierzy=wektor1*Maciora;
+
+
+cout<<iloczyn_macierzy<<endl;
+
+cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+cout<<dlugoscWektora(wektor1,wektor2)<<endl;
+
+cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"COORDS PROSTOKATA"<<endl<<Prosty<<endl<<"~~~~~~~~~~~~~~~~~~~"<<endl;
+
+Prostokat ProstyPoPrzesunieciu;
+ProstyPoPrzesunieciu=PrzesunOWektor(Prosty,wektor1);
+cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"COORDS PROSTOKATA PO PRZESUNIECIU O WEKTOR: "<<wektor1<<endl<<endl<<"~~~~~~~~~~~~~~~~~~~"<<endl;
+cout<<ProstyPoPrzesunieciu<<endl;
 	
 
 }

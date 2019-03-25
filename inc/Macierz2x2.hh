@@ -13,11 +13,14 @@ class Macierz2x2 {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-	Wektor2D wektory[LICZBA];
+	double tablica[LICZBA][LICZBA];
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */    
+  	double operator () (int Wiersz, int Kolumna) const {return tablica[Wiersz][Kolumna];}
+  	double& operator () (int Wiersz, int Kolumna)  {return tablica[Wiersz][Kolumna];}
+  	/*
   	void Przypisz_wektor_macierzy(unsigned int a, Wektor2D wektor)
   	{
   		wektory[a]=wektor;
@@ -26,7 +29,8 @@ class Macierz2x2 {
    Wektor2D Zwroc_wektor_macierzy(unsigned int a)
   	{
   		return wektory[a];
-  	}   
+  	} 
+  	*/  
 
 };
 
@@ -42,5 +46,7 @@ class Macierz2x2 {
  */
 std::ostream& operator << (std::ostream &Strm,  Macierz2x2 &Mac);
 Macierz2x2 Stworz(Wektor2D wek1,Wektor2D wek2);
-//Wektor2D  operator * (Wektor2D wektor1,Macierz2x2 macierz);
+Wektor2D operator * (Wektor2D wektor, Macierz2x2 macierz);
+//Wektor2D operator * (Wektor2D wektor);
+
 #endif

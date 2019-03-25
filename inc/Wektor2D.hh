@@ -21,6 +21,12 @@ class Wektor2D {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */    
+  	double operator [] (int Ind) const { return tablica[Ind];}
+  	double& operator [] (int Ind) {return tablica[Ind];}
+  	 //Wektor2D operator + (Wektor2D wektor1);
+
+
+   /*
   	double Zwroc_wartosc(int a)
   	{
   		return tablica[a];
@@ -30,6 +36,9 @@ class Wektor2D {
   	{
   		tablica[a]=b;
   	}
+  	*/
+
+
 
 };
 
@@ -53,10 +62,11 @@ std::istream& operator >> (std::istream &Strm, Wektor2D &Wek);
 std::ostream& operator << (std::ostream &Strm,  Wektor2D &Wek) ;
 
  
+
 Wektor2D  operator + (Wektor2D wektor1,Wektor2D wektor2);
 Wektor2D  operator - (Wektor2D wektor1,Wektor2D wektor2);
 Wektor2D  operator * (Wektor2D wektor1,Wektor2D wektor2);
-//Wektor2D  operator * (Wektor2D wektor1,Macierz2x2 macierz);
+double dlugoscWektora (Wektor2D wektor1, Wektor2D wektor2);	
 Wektor2D  operator * (Wektor2D wektor1,double liczba);
 Wektor2D  operator / (Wektor2D wektor1,double liczba);
 void WyswietlWektor(Wektor2D wektorek);

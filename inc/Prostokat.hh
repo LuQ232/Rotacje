@@ -20,7 +20,9 @@ class Prostokat {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */ 
-
+    Wektor2D operator [] (int ind) const { return wierzcholki[ind];}
+  	Wektor2D& operator [] (int ind)		 {return wierzcholki[ind];}
+  /*
    void Przypisz_wektor_prostokata(unsigned int a, Wektor2D wektor)
   	{
   		wierzcholki[a]=wektor;
@@ -30,7 +32,8 @@ class Prostokat {
   	{
   		return wierzcholki[a];
   	}   
-};
+  	*/
+};	
 
 
 /*
@@ -42,5 +45,6 @@ class Prostokat {
  */
 std::ostream& operator << ( std::ostream &Strm,  Prostokat    &Pr);
 Prostokat Stworz(Wektor2D wek1,Wektor2D wek2,Wektor2D wek3,Wektor2D wek4);
+Prostokat PrzesunOWektor(Prostokat prosty,Wektor2D wektor);
 void WyswietlWspolrzedne(Prostokat Prosty);
 #endif
