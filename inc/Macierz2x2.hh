@@ -36,6 +36,6 @@ class Macierz2x2 {
  * Przeciążenie to może być użyteczne w trakcie debugowania programu.
  */
 std::ostream& operator << (std::ostream &Strm, const Macierz2x2 &Mac);
-Macierz2x2 Stworz(Wektor2D wek1,Wektor2D wek2);
+
 
 #endif

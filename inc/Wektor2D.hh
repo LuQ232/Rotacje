@@ -12,7 +12,7 @@ class Wektor2D {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-
+   // Wektor jest tablica zmiennych typu double
    double tablica[ROZMIARWEKTORA]; 
  
 	
@@ -23,7 +23,7 @@ class Wektor2D {
    */   
     double operator [] (int Ind) const { return tablica[Ind];}
     double& operator [] (int Ind) {return tablica[Ind];}
-    Wektor2D  operator + (Wektor2D wektor1);
+    Wektor2D  operator + (Wektor2D wektor1); 
     Wektor2D  operator - (Wektor2D wektor1);
     Wektor2D  operator * (Wektor2D wektor1);
     Wektor2D  operator * (double liczba);

@@ -13,7 +13,11 @@ using namespace std;
  *  Mniejsze metody mozna definiwac w ciele klasy.
  */
 
-
+/*
+ Przeciazenie operacji dodawania dla wektora2D
+ Przesylamy Wektor2D
+ Zwracamy sumę wektorów
+ */
 Wektor2D  Wektor2D::operator + (Wektor2D  wektor1)
 {
   
@@ -26,6 +30,11 @@ Wektor2D  Wektor2D::operator + (Wektor2D  wektor1)
 
   return wektor1;
 }
+/*
+ Przeciazenie operacji odejmowania dla wektora2D
+ Przesylamy Wektor2D
+ Zwracamy roznice wektorów
+ */
 
 Wektor2D  Wektor2D::operator - (Wektor2D  wektor1)
 {
@@ -40,7 +49,12 @@ Wektor2D  Wektor2D::operator - (Wektor2D  wektor1)
   return wektor1;
 }
 
-//ILOCZYN SKALARNY DWOCH WEKTORÓW -> ZWRACA WEKTOR 
+
+/*
+ Przeciazenie operacji mnożenia dwoch wektorow2D
+ Przesylamy Wektor2D
+ Zwracamy iloczyn wektorów
+ */
 Wektor2D  Wektor2D::operator * (Wektor2D  wektor1)
 {
   Wektor2D  Wynik;
@@ -55,7 +69,13 @@ Wektor2D  Wektor2D::operator * (Wektor2D  wektor1)
   return Wynik;
 }
 
-//ILOCZYN   WEKTORA I LICZBY  -> ZWRACA WEKTOR 
+
+/*
+ Przeciazenie operacji mnożenia wektora i liczby 
+ Przesylamy liczbe typu double
+ Zwracamy  wektor2D
+ */
+
 Wektor2D  Wektor2D::operator * (double liczba)
 {
   Wektor2D  Wynik;
@@ -70,7 +90,11 @@ Wektor2D  Wektor2D::operator * (double liczba)
   return Wynik;
 }
 
-//ILORAZ   WEKTORA I LICZBY  -> ZWRACA WEKTOR 
+/*
+ Przeciazenie operacji dzielenia wektora przez liczbe 
+ Przesylamy liczbe typu double
+ Zwracamy  wektor2D
+ */
 Wektor2D Wektor2D::operator / (double liczba)
 {
   Wektor2D  Wynik;
@@ -85,7 +109,9 @@ Wektor2D Wektor2D::operator / (double liczba)
   return Wynik;
 }
 
-
+/*
+ Przesuniecie bitowe w lewo dla Wektora (wyswietlanie)
+ */
 std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek) 
 {
 	
@@ -98,6 +124,9 @@ std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek)
 	return Strm;
 }
 
+/*
+ Przesuniecie bitowe w prawo dla Wektora (wczytywanie)
+ */
 std::istream& operator >> (std::istream &Strm, Wektor2D &Wek)
 {
 
@@ -111,7 +140,11 @@ std::istream& operator >> (std::istream &Strm, Wektor2D &Wek)
 return Strm;	
 }
 
-
+/*
+ Funkcja obliczająca odlegosc dwoch punktow na plaszczyznie kartezjanskiej
+ Przesylamy dwa wektory
+ Zwracamy odleglosc przeslanych punktow jako typ double
+ */
 double OdlegloscPunktow (Wektor2D wektor1, Wektor2D wektor2)
 {
 	double odleglosc;

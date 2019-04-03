@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+
 #include "Wektor2D.hh"
 #include "Macierz2x2.hh"
 #include "Prostokat.hh"
@@ -16,14 +17,6 @@ using namespace std;
  * i tam je umiescic. Ten przyklad pokazuje
  * jedynie absolutne minimum.
  */
-
-
-#define DL_KROTKI_BOK  100
-#define DL_DLUGI_BOK   150
-
-
-
-
 
 /*!
  * Przyklad zapisu wspolrzednych zbioru punktow do strumienia wyjściowego.
@@ -60,18 +53,6 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream&     StrmWy, Prostokat Pro
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-void menu()
-{
-cout<<endl<<endl<<endl<<endl;
-cout<<"o - obrot prostokata o zadany kat"<<endl;
-cout<<"p - przesuniecie prostokata o zadany wektor"<<endl;
-cout<<"w - wyswietlenie wspolrzednych wierzcholkow"<<endl;
-cout<<"t - sprawdzenie czy boki prostokata sa rowne"<<endl;
-cout<<"m - wyswietl menu"<<endl;
-cout<<"k - koniec dzialania programu"<<endl;
-}
-
-
 bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,Prostokat Prosty)
 {
   ofstream  StrmPlikowy;
@@ -89,12 +70,27 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,Prostokat Pros
   return !StrmPlikowy.fail();
 }
 
+/*!
+ Funkcja wyswietlajaca menu programu na standardowe wyjscie
+ */
+void menu()
+{
+cout<<endl<<endl<<endl<<endl;
+cout<<"o - obrot prostokata o zadany kat"<<endl;
+cout<<"p - przesuniecie prostokata o zadany wektor"<<endl;
+cout<<"w - wyswietlenie wspolrzednych wierzcholkow"<<endl;
+cout<<"t - sprawdzenie czy boki prostokata sa rowne"<<endl;
+cout<<"m - wyswietl menu"<<endl;
+cout<<"k - koniec dzialania programu"<<endl;
+}
+
+
+
 
 
 int main()
 {
   
-  //Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
 
@@ -120,7 +116,7 @@ int main()
   
  
 
-//INICJACJA PROSTOKATA//
+//INICJACJA PROSTOKATA "NA SZTYWNO W PROGRAMIE"//
   Wektor2D wektor1;
   Wektor2D wektor2;
   Wektor2D wektor3;
@@ -134,12 +130,14 @@ int main()
   wektor4[0]=-100;
   wektor4[1]=100;
   Prostokat Prosty;
-   Prosty[0]=wektor1;
-   Prosty[1]=wektor2;
-   Prosty[2]=wektor3;
-   Prosty[3]=wektor4;
+  Prosty[0]=wektor1;
+  Prosty[1]=wektor2;
+  Prosty[2]=wektor3;
+  Prosty[3]=wektor4;
 /////////////////////////////////////////////////////////////////////
-//////////////////////////GLOWNA PETLA/////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////GLOWNA PETLA PROGRAMU////////////////////////////////////////////////////////////
 	for (;;)
 	{
 
@@ -177,8 +175,8 @@ int main()
 			    
 			case 'w'://WYSWIETLENIE WSPOLRZEDNYCH I GNUPLOT
 			    cout<<Prosty;
-			    ////////////////////////////////////ZAPIS DO PLIKU I WYSWIETLENIE W GNUPLOCIE/////////////////////////
-			    PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
+			  ////////////////////////////////////ZAPIS DO PLIKU I WYSWIETLENIE W GNUPLOCIE/////////////////////////
+			  PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
 				if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",Prosty)) return 1;
 				Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
 				cout << "Naciśnij ENTER, aby kontynuowac" << endl;
@@ -186,7 +184,7 @@ int main()
 				//////////////////////////////////////////////////////////////////////////////////////////////////////
 			    break;
 
-			 case 't'://WYSWIETLENIE WSPOLRZEDNYCH
+			 case 't'://SPRAWDZENIE I WYSWIETLENIE DLUGOSCI DANYCH BOKOW PROSTOKATA
 			    Prosty.CzyRowne();
 			    break;
 			   
@@ -198,12 +196,10 @@ int main()
 			    return 0;
 				break;
 		   
-		}
+		}//KONIEC SWITCHA
 
-	}
-}
-
-
+	}//KONIEC NIESKONCZONEJ PETLI
+}//KONIEC MAINA PROGRAMU
 
 
 
@@ -216,9 +212,12 @@ int main()
 
 
 
+
+/////////////////LINIJKA TESTOW/////////////
 //-100 -100 100 -100 100 100 -100 100
-/*
-  
+
+///////////////////////////STARA CZESC PROGRAMU, SLUZYLA DO TESTOW POSZCZEGOLNYCH METOD I FUNKCJI///////////////////////////////////////////
+/* 
 cout<<"Podaj 4 boki kwadratu:"<<endl;
   Wektor2D wektor1;
   Wektor2D wektor2;
