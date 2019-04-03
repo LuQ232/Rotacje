@@ -1,5 +1,5 @@
 #include "Prostokat.hh"
-#include "Wektor2D.hh"
+#include "Macierz2x2.hh"
 
 /*
  *  Tutaj nalezy zdefiniowac odpowiednie metody
@@ -7,61 +7,66 @@
  *  wiecej kodu niz dwie linijki.
  *  Mniejsze metody mozna definiwac w ciele klasy.
  */
-using namespace std;
 
-Prostokat Stworz(Wektor2D wek1,Wektor2D wek2,Wektor2D wek3,Wektor2D wek4)
+std::ostream& operator << ( std::ostream &Strm, const  Prostokat    &Pr)
 {
-
-Prostokat Prosty;
-
-	Prosty[0]=wek1;
-	Prosty[1]=wek2;
-	Prosty[2]=wek3;
-	Prosty[3]=wek4;
-	/*
-	Prosty.Przypisz_wektor_prostokata(0,wek1);
-	Prosty.Przypisz_wektor_prostokata(1,wek2);
-	Prosty.Przypisz_wektor_prostokata(2,wek3);
-	Prosty.Przypisz_wektor_prostokata(3,wek4);
-	*/
-return Prosty;
-}
-
-Prostokat PrzesunOWektor(Prostokat prosty,Wektor2D wektor)
-{
-	for(int i=0;i<ILOSC;i++)
-	{
-		prosty[i]=prosty[i]+wektor;
-	}
-	return prosty;
-}
-
-
-std::ostream& operator << ( std::ostream &Strm,  Prostokat    &Pr)
-{
-	for (int i=0;i<ILOSC;i++)
+	for (int i=0;i<ILOSCWIERZCHOLKOW;i++)
 	{
 		Wektor2D  tmp;
 		tmp=Pr[i];
-		//tmp=Pr.Zwroc_wektor_prostokata(i);
-		Strm<<tmp<<endl;
+		Strm<<tmp<<std::endl;
 	}
 	return Strm;
-
 }
 
-
-
-/////////////////////////////////////////////////////////////////////FUNKCJE JUZ NIE UZYWANE///////////////////////////////////////////////
-
-/*
-void WyswietlWspolrzedne(Prostokat Prosty)
+void Prostokat::RotacjaProstokata(double kat)
 {
-	for (int i=0;i<ILOSC;i++)
-	{
-		Wektor2D tmp;
-		tmp=Prosty.Zwroc_wektor_prostokata(i);
-		cout<<tmp<<endl;
-	}	
+	
+Macierz2x2 Macierz;
+Macierz.WypelnijTryg(kat);
+  for(int i=0; i<ILOSCWIERZCHOLKOW;i++)
+  {
+  	wierzcholki[i]=Macierz*wierzcholki[i];
+  }
+
 }
-*/
+
+
+
+void Prostokat::PrzesunOWektor(Wektor2D wektor)
+{
+	for(int i=0;i<ILOSCWIERZCHOLKOW;i++)
+	{
+		wierzcholki[i]=wierzcholki[i]+wektor;
+	}
+}
+
+void Prostokat::CzyRowne()
+{
+	
+	
+		if(OdlegloscPunktow(wierzcholki[0],wierzcholki[1])==OdlegloscPunktow(wierzcholki[3],wierzcholki[2]))
+		{
+			std::cout<<":) Jedne przeciwlegle boki sa sobie rowne."<<std::endl;
+			std::cout<<"Dlugosc pierwszego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[0],wierzcholki[1])<<std::endl;
+			std::cout<<"Dlugosc drugiego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[3],wierzcholki[2])<<std::endl;
+		}else
+		{
+			std::cout<<":0 Jedne przeciwlegle boki NIE sa sobie rowne."<<std::endl;
+			std::cout<<"Dlugosc pierwszego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[0],wierzcholki[1])<<std::endl;
+			std::cout<<"Dlugosc drugiego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[3],wierzcholki[2])<<std::endl;
+		}
+	
+	if(OdlegloscPunktow(wierzcholki[0],wierzcholki[3])==OdlegloscPunktow(wierzcholki[1],wierzcholki[2]))
+		{
+			std::cout<<":) Drugie prze3ciwlegle boki sa sobie rowne."<<std::endl;
+			std::cout<<"Dlugosc pierwszego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[0],wierzcholki[3])<<std::endl;
+			std::cout<<"Dlugosc drugiego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[1],wierzcholki[2])<<std::endl;
+		}else
+		{
+			std::cout<<":0 Drugie przeciwlegle boki NIE sa sobie rowne."<<std::endl;
+			std::cout<<"Dlugosc pierwszego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[0],wierzcholki[3])<<std::endl;
+			std::cout<<"Dlugosc drugiego boku: "<<std::fixed<<std::setprecision(16)<<OdlegloscPunktow(wierzcholki[1],wierzcholki[2])<<std::endl;
+		}
+	
+}

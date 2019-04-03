@@ -1,9 +1,12 @@
 #ifndef PROSTOKAT_HH
 #define PROSTOKAT_HH
+#define ILOSCWIERZCHOLKOW 4
 
-#define ILOSC  4
-#include <iostream>
 #include "Wektor2D.hh"
+
+#include<iostream>
+#include<iomanip>
+#include<cstdlib>
 
 
 /*
@@ -14,26 +17,17 @@ class Prostokat {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-	Wektor2D wierzcholki[ILOSC];
-
+	Wektor2D wierzcholki[ILOSCWIERZCHOLKOW];
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */ 
-    Wektor2D operator [] (int ind) const { return wierzcholki[ind];}
-  	Wektor2D& operator [] (int ind)		 {return wierzcholki[ind];}
-  /*
-   void Przypisz_wektor_prostokata(unsigned int a, Wektor2D wektor)
-  	{
-  		wierzcholki[a]=wektor;
-  	}
-
-   Wektor2D Zwroc_wektor_prostokata(unsigned int a)
-  	{
-  		return wierzcholki[a];
-  	}   
-  	*/
-};	
+   */  
+   Wektor2D operator [] (int ind) const { return wierzcholki[ind];}
+   Wektor2D& operator [] (int ind)		 {return wierzcholki[ind];}
+   void PrzesunOWektor(Wektor2D wektor);
+   void RotacjaProstokata(double kat);
+   void CzyRowne(); 
+};
 
 
 /*
@@ -43,8 +37,7 @@ class Prostokat {
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::ostream& operator << ( std::ostream &Strm,  Prostokat    &Pr);
-Prostokat Stworz(Wektor2D wek1,Wektor2D wek2,Wektor2D wek3,Wektor2D wek4);
-Prostokat PrzesunOWektor(Prostokat prosty,Wektor2D wektor);
-void WyswietlWspolrzedne(Prostokat Prosty);
+std::ostream& operator << ( std::ostream &Strm,const Prostokat    &Pr);
+
+
 #endif

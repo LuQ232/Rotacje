@@ -39,34 +39,9 @@ using namespace std;
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-void PrzykladZapisuWspolrzednychDoStrumienia( ostream&     StrmWy, 
-                                              double       Przesuniecie
-                                            )
+void PrzykladZapisuWspolrzednychDoStrumienia( ostream&     StrmWy, Prostokat Prosty)
 {
-   //---------------------------------------------------------------
-   // To tylko przyklad !!!
-   // W programie nalezy uzywać pojęcia wektora, a nie oddzielnych 
-   // zmiennych do reprezentowania wspolrzednych!
-   //
-  double  x1, y1, x2, y2, x3, y3, x4, y4; 
-
-  x1 = y1 = 10;
-  x2 = x1 + DL_DLUGI_BOK;  y2 = y1;
-  x3 = x2;  y3 = y2 + DL_KROTKI_BOK;
-  x4 = x3 - DL_DLUGI_BOK; y4 = y3;
-
-
-  StrmWy << setw(16) << fixed << setprecision(10) << x1+Przesuniecie 
-         << setw(16) << fixed << setprecision(10) << y1+Przesuniecie << endl;
-  StrmWy << setw(16) << fixed << setprecision(10) << x2+Przesuniecie 
-         << setw(16) << fixed << setprecision(10) << y2+Przesuniecie << endl;
-  StrmWy << setw(16) << fixed << setprecision(10) << x3+Przesuniecie 
-         << setw(16) << fixed << setprecision(10) << y3+Przesuniecie << endl;
-  StrmWy << setw(16) << fixed << setprecision(10) << x4+Przesuniecie 
-         << setw(16) << fixed << setprecision(10) << y4+Przesuniecie << endl;
-  
-  StrmWy << setw(16) << fixed << setprecision(10) << x1+Przesuniecie 
-         << setw(16) << fixed << setprecision(10) << y1+Przesuniecie << endl; 
+  StrmWy << Prosty<<Prosty[0]<<endl;
                              // Jeszcze raz zapisujemy pierwszy punkt,
                              // aby gnuplot narysowal zamkniętą linię.
 }
@@ -85,20 +60,30 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream&     StrmWy,
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
-                                         double       Przesuniecie
-                                       )
+void menu()
+{
+cout<<endl<<endl<<endl<<endl;
+cout<<"o - obrot prostokata o zadany kat"<<endl;
+cout<<"p - przesuniecie prostokata o zadany wektor"<<endl;
+cout<<"w - wyswietlenie wspolrzednych wierzcholkow"<<endl;
+cout<<"t - sprawdzenie czy boki prostokata sa rowne"<<endl;
+cout<<"m - wyswietl menu"<<endl;
+cout<<"k - koniec dzialania programu"<<endl;
+}
+
+
+bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,Prostokat Prosty)
 {
   ofstream  StrmPlikowy;
 
   StrmPlikowy.open(sNazwaPliku);
   if (!StrmPlikowy.is_open())  {
     cerr << ":(  Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << endl
-	 << ":(  nie powiodla sie." << endl;
+   << ":(  nie powiodla sie." << endl;
     return false;
   }
 
-  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy,Przesuniecie);
+  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy, Prosty);
 
   StrmPlikowy.close();
   return !StrmPlikowy.fail();
@@ -109,7 +94,7 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
 int main()
 {
   
- /* Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
+  //Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
 
@@ -133,86 +118,209 @@ int main()
   Lacze.ZmienTrybRys(PzG::TR_2D);
 
   
-  PrzykladZapisuWspolrzednychDoStrumienia(cout,0);
-  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",0)) return 1;
+ 
+
+//INICJACJA PROSTOKATA//
+  Wektor2D wektor1;
+  Wektor2D wektor2;
+  Wektor2D wektor3;
+  Wektor2D wektor4;
+  wektor1[0]=-100;
+  wektor1[1]=-100;
+  wektor2[0]=100;
+  wektor2[1]=-100;
+  wektor3[0]=100;
+  wektor3[1]=100;
+  wektor4[0]=-100;
+  wektor4[1]=100;
+  Prostokat Prosty;
+   Prosty[0]=wektor1;
+   Prosty[1]=wektor2;
+   Prosty[2]=wektor3;
+   Prosty[3]=wektor4;
+/////////////////////////////////////////////////////////////////////
+//////////////////////////GLOWNA PETLA/////////////////////////////////////////////////////////////////////////
+	for (;;)
+	{
+
+		menu();
+		char literka;
+		cin>>literka;
+		switch( literka )
+		{
+			case 'o'://OBROT PROSTOKATA
+				   cout<<"podaj kat rotacji: ";
+				   double kat;
+				   cin>>kat;
+				   cout<<"ile razy zrotowac ";
+				   int ile;
+				   cin>>ile;
+				   for(int i=0;i<ile;i++)
+					{
+					   Prosty.RotacjaProstokata(kat);
+					}
+			    break;
+			   
+			case 'p'://PRZESUNIECIE PROSTOKATA O WEKTOR
+			    cout<<"Wprowadz wspolrzedne wektora translacji w postaci dwoch liczb"<<endl<<"tzn. wspolrzednej x oraz wspolrzednej y."<<endl;
+			    double x;
+			    double y;
+			    cin>>x;
+			    cin>>y;
+			    Wektor2D WektorPrzesuniecia;
+			    WektorPrzesuniecia[0]=x;
+			    WektorPrzesuniecia[1]=y;
+			    Prosty.PrzesunOWektor(WektorPrzesuniecia);
+			    cout<<"Prostokat zostal przesuniety"<<endl;
+			    break;
+			   
+			    
+			case 'w'://WYSWIETLENIE WSPOLRZEDNYCH I GNUPLOT
+			    cout<<Prosty;
+			    ////////////////////////////////////ZAPIS DO PLIKU I WYSWIETLENIE W GNUPLOCIE/////////////////////////
+			    PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
+				if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",Prosty)) return 1;
+				Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+				cout << "Naciśnij ENTER, aby kontynuowac" << endl;
+				cin.ignore(100000,'\n');
+				//////////////////////////////////////////////////////////////////////////////////////////////////////
+			    break;
+
+			 case 't'://WYSWIETLENIE WSPOLRZEDNYCH
+			    Prosty.CzyRowne();
+			    break;
+			   
+			case 'm'://WYSWIETLENIE MENU
+			    
+				break;
+
+			case 'k'://KONIEC PROGRAMU
+			    return 0;
+				break;
+		   
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-100 -100 100 -100 100 100 -100 100
+/*
+  
+cout<<"Podaj 4 boki kwadratu:"<<endl;
+  Wektor2D wektor1;
+  Wektor2D wektor2;
+  Wektor2D wektor3;
+  Wektor2D wektor4;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  cin>>wektor1;
+  cin>>wektor2;
+  cin>>wektor3;
+  cin>>wektor4;
+  cout<<wektor1<<endl;
+  cout<<wektor2<<endl;
+  cout<<wektor3<<endl;
+  cout<<wektor4<<endl<<endl<<endl<<endl;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  Macierz2x2 Macierz;
+  Macierz=Stworz(wektor1,wektor2);
+  cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"MACIERZ"<<Macierz;
+//////////////////////////////////////TEST ILOCZYNU MACIERZY RAZY WEKTOR////////////////////////////////////////////
+  cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"Wektor"<<wektor1;
+  Wektor2D iloczyn;
+  iloczyn=Macierz*wektor1;
+  cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"Iloczyn"<<iloczyn;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////TEST WYPELNIENIA MACIERZY TRYG////////////////////////////////////////////
+  cout<<endl<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+  Macierz.WypelnijTryg(0);
+  cout<<Macierz;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////TEST PRZESUNIECIA PROSTOKATA O WEKTOR////////////////////////////////////
+   Prostokat Prosty;
+   cout<<endl<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+   Prosty[0]=wektor1;
+   Prosty[1]=wektor2;
+   Prosty[2]=wektor3;
+   Prosty[3]=wektor4;
+   cout<<"Prostokat przed przesunieciem: "<<endl;
+   cout<<Prosty;
+
+
+   PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
+  	if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",Prosty)) return 1;
+  	Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+  	cout << "Naciśnij ENTER, aby kontynuowac" << endl;
+  	cin.ignore(100000,'\n');
+  	PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
+  	if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",Prosty)) return 1;
+  	Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+  	cout << "Naciśnij ENTER, aby kontynuowac" << endl;
+  	cin.ignore(100000,'\n');
+
+
+   Wektor2D WektorPrzesuniecia;
+   WektorPrzesuniecia[0]=101;
+   WektorPrzesuniecia[1]=101;
+   Prosty.PrzesunOWektor(WektorPrzesuniecia);
+   cout<<"Prostokat po przesunieciu: "<<endl;
+   cout<<Prosty;
+
+   PrzykladZapisuWspolrzednychDoStrumienia(cout,Prosty);
+  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",Prosty)) return 1;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
   cin.ignore(100000,'\n');
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   //----------------------------------------------------------
-   // Ponownie wypisuje wspolrzedne i rysuje prostokąt w innym miejscu.
-   //
-  PrzykladZapisuWspolrzednychDoStrumienia(cout,50);
-  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",50)) return 1;
+   //////////////////////////////////////TEST ROTACJI PROSTOKATA //////////////////////////////////////////////
+  Prostokat ProstyTestRotacji;
+   ProstyTestRotacji[0]=wektor1;
+   ProstyTestRotacji[1]=wektor2;
+   ProstyTestRotacji[2]=wektor3;
+   ProstyTestRotacji[3]=wektor4;
+   cout<<"podaj kat rotacji: ";
+   double kat;
+   cin>>kat;
+   cout<<"ile razy zrotowac ";
+   int ile;
+   cin>>ile;
+   cout<<endl<<"Prostokat przed rotacja: "<<endl<<ProstyTestRotacji<<endl;
+
+    PrzykladZapisuWspolrzednychDoStrumienia(cout,ProstyTestRotacji);
+  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",ProstyTestRotacji)) return 1;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
-  cin.ignore(100000,'\n'); */
-
-
- Wektor2D wektor1;
- Wektor2D wektor2;
- cin>>wektor1;
- //wektor1.Przypisz_wartosc(0,50);//X
- //wektor1.Przypisz_wartosc(1,70);//Y
+  cin.ignore(100000,'\n');
  
-cout<<wektor1<<endl;
-cin>>wektor2;
- //wektor2.Przypisz_wartosc(0,100);//X
- //wektor2.Przypisz_wartosc(1,100);//Y
-cout<<wektor2<<endl;
-cout<<endl;
-Wektor2D suma;
-suma=wektor1+wektor2;
-Wektor2D iloczyn;
-iloczyn=wektor1*wektor2;
-Wektor2D iloczyn_liczby;
-iloczyn_liczby=iloczyn*10;
-cout<<"SUMA->>>>"<<suma<<endl<<"ILOCZYN->>>"<<iloczyn<<endl<<"TO CO WYZEJ RAZY 10"<<iloczyn_liczby<<endl;
-cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`"<<endl;
 
-Macierz2x2 Maciora;
-Prostokat Prosty;
+   cout<<endl<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+   for(int i=0;i<ile;i++)
+   {
+   ProstyTestRotacji.RotacjaProstokata(kat);
+   }
+   cout<<"Prostokat po rotacji: "<<endl<<ProstyTestRotacji<<endl;
 
-
-	Prosty=Stworz(wektor1,wektor2,suma,iloczyn);
-	//WyswietlWspolrzedne(Prosty);
-	cout<<Prosty;
-	Prosty=Stworz(wektor1,wektor1,wektor2,wektor2);
-	cout<<endl<<endl<<Prosty<<endl;
-	Maciora=Stworz(wektor1,wektor2);
-	cout<<Maciora;
-
-	/*	
-	Wektor2D tmp;
-	for (int i=0; i<4;i++)
-	{
-	Prosty.Przypisz_wektor_prostokata(i,wektor1);
-	tmp=Prosty.Zwroc_wektor_prostokata(i);
-	cout<<tmp;
-	}
-	*/	
-
-
-cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-
-
-Wektor2D iloczyn_macierzy;
-iloczyn_macierzy=wektor1*Maciora;
-
-
-cout<<iloczyn_macierzy<<endl;
-
-cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-cout<<dlugoscWektora(wektor1,wektor2)<<endl;
-
-cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"COORDS PROSTOKATA"<<endl<<Prosty<<endl<<"~~~~~~~~~~~~~~~~~~~"<<endl;
-
-Prostokat ProstyPoPrzesunieciu;
-ProstyPoPrzesunieciu=PrzesunOWektor(Prosty,wektor1);
-cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<"COORDS PROSTOKATA PO PRZESUNIECIU O WEKTOR: "<<wektor1<<endl<<endl<<"~~~~~~~~~~~~~~~~~~~"<<endl;
-cout<<ProstyPoPrzesunieciu<<endl;
-	
-
-}
+    PrzykladZapisuWspolrzednychDoStrumienia(cout,ProstyTestRotacji);
+  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",ProstyTestRotacji)) return 1;
+  Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+  cout << "Naciśnij ENTER, aby kontynuowac" << endl;
+  cin.ignore(100000,'\n');
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/

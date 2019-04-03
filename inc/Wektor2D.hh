@@ -1,10 +1,8 @@
 #ifndef WEKTOR2D_HH
 #define WEKTOR2D_HH
 
-#define ROZMIAR 2
-
 #include <iostream>
-
+#define ROZMIARWEKTORA 2
 
 /*
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
@@ -15,32 +13,28 @@ class Wektor2D {
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
 
-		double tablica[ROZMIAR];
-
+   double tablica[ROZMIARWEKTORA]; 
+ 
+	
+	
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
-  	double operator [] (int Ind) const { return tablica[Ind];}
-  	double& operator [] (int Ind) {return tablica[Ind];}
-  	 //Wektor2D operator + (Wektor2D wektor1);
-
-
-   /*
-  	double Zwroc_wartosc(int a)
-  	{
-  		return tablica[a];
-  	}
-
-  	void Przypisz_wartosc(int a, double b)
-  	{
-  		tablica[a]=b;
-  	}
-  	*/
-
-
+   */   
+    double operator [] (int Ind) const { return tablica[Ind];}
+    double& operator [] (int Ind) {return tablica[Ind];}
+    Wektor2D  operator + (Wektor2D wektor1);
+    Wektor2D  operator - (Wektor2D wektor1);
+    Wektor2D  operator * (Wektor2D wektor1);
+    Wektor2D  operator * (double liczba);
+    Wektor2D  operator / ( double liczba);
 
 };
+
+
+
+
+
 
 
 /*
@@ -59,17 +53,6 @@ std::istream& operator >> (std::istream &Strm, Wektor2D &Wek);
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::ostream& operator << (std::ostream &Strm,  Wektor2D &Wek) ;
-
- 
-
-Wektor2D  operator + (Wektor2D wektor1,Wektor2D wektor2);
-Wektor2D  operator - (Wektor2D wektor1,Wektor2D wektor2);
-Wektor2D  operator * (Wektor2D wektor1,Wektor2D wektor2);
-double dlugoscWektora (Wektor2D wektor1, Wektor2D wektor2);	
-Wektor2D  operator * (Wektor2D wektor1,double liczba);
-Wektor2D  operator / (Wektor2D wektor1,double liczba);
-void WyswietlWektor(Wektor2D wektorek);
-
-Wektor2D Dodaj_wektory(Wektor2D wektor1,Wektor2D wektor2);
+std::ostream& operator << (std::ostream &Strm, const Wektor2D &Wek);
+double OdlegloscPunktow (Wektor2D wektor1, Wektor2D wektor2);
 #endif

@@ -1,8 +1,9 @@
 #ifndef MACIERZ2X2_HH
 #define MACIERZ2X2_HH
-#define LICZBA 2
+#define LICZBAMACIERZY 2
 
 #include <iostream>
+#include <cmath>
 #include "Wektor2D.hh"
 
 /*
@@ -13,25 +14,15 @@ class Macierz2x2 {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-	double tablica[LICZBA][LICZBA];
+	Wektor2D tablica[LICZBAMACIERZY];
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
-  	double operator () (int Wiersz, int Kolumna) const {return tablica[Wiersz][Kolumna];}
-  	double& operator () (int Wiersz, int Kolumna)  {return tablica[Wiersz][Kolumna];}
-  	/*
-  	void Przypisz_wektor_macierzy(unsigned int a, Wektor2D wektor)
-  	{
-  		wektory[a]=wektor;
-  	}
-
-   Wektor2D Zwroc_wektor_macierzy(unsigned int a)
-  	{
-  		return wektory[a];
-  	} 
-  	*/  
-
+   */   
+   Wektor2D operator () (int Wektor) const {return tablica[Wektor];}
+   Wektor2D& operator () (int Wektor)  {return tablica[Wektor];} 
+   Wektor2D operator * (Wektor2D wektor);
+   void WypelnijTryg(double kat);
 };
 
 
@@ -44,9 +35,7 @@ class Macierz2x2 {
  *
  * Przeciążenie to może być użyteczne w trakcie debugowania programu.
  */
-std::ostream& operator << (std::ostream &Strm,  Macierz2x2 &Mac);
+std::ostream& operator << (std::ostream &Strm, const Macierz2x2 &Mac);
 Macierz2x2 Stworz(Wektor2D wek1,Wektor2D wek2);
-Wektor2D operator * (Wektor2D wektor, Macierz2x2 macierz);
-//Wektor2D operator * (Wektor2D wektor);
 
 #endif
